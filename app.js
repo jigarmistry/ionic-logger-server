@@ -6,7 +6,6 @@ var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 
 var index = require("./routes/index");
-var users = require("./routes/users");
 
 var app = express();
 
@@ -66,9 +65,6 @@ app.use(function(err, req, res, next) {
   res.render("error");
 });
 
-io.on("connection", function() {
-  console.log("Connection");
-});
 server.listen(4567);
 
 module.exports = app;

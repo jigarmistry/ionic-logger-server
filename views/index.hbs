@@ -22,7 +22,8 @@
         socket.on('message', function (data) {
             id += 1;
             let jsonId = "json" + id;
-            $("#log").prepend('<li class="list-group-item"><span class="date">' + new Date() + "</span> : <b>" + data.message + '</b><p id="' + jsonId + '"></p></li>');
+            let message = data.message ? data.message : "";
+            $("#log").prepend('<li class="list-group-item"><span class="date">' + new Date() + "</span> : <b>" + message + '</b><p id="' + jsonId + '"></p></li>');
 
             if (data.data) {
                 if (isJson(data.data)) {
