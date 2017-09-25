@@ -44,7 +44,7 @@ var server = require("http").createServer(app);
 var io = require("socket.io")(server);
 
 app.post("/messages", function(req, res) {
-  io.send(req.body.message);
+  io.send(req.body);
   res.send("ok");
 });
 
