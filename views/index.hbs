@@ -1,0 +1,20 @@
+<h1>Logs</h1>
+<ul id="log"></ul>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var socket = io('http://localhost:4567');
+        socket.on('connect', function () {
+            console.log('connect');
+        });
+        socket.on('message', function (data) {
+            console.log(data);
+            $("#log").append('<li>' + data + '</li>');
+        });
+        socket.on('disconnect', function () { });
+    });
+
+</script>
