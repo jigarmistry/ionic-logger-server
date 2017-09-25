@@ -1,6 +1,5 @@
 <div class="container">
     <div class="text-center">
-        <h3>App Logs</h3>
         <button id="clear" type="button" class="btn btn-outline-danger">Clear</button><br/><br/>
     </div>
     <ul id="log" class="list-group"></ul>
@@ -8,6 +7,15 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var clipboard = new Clipboard('.clip');
+        clipboard.on('success', function (e) {
+            toastr.options = {
+                "positionClass": "toast-top-right",
+                "showDuration": "300",
+                "hideDuration": "500"
+            }
+            toastr.success('Copied to Clipboard');
+            e.clearSelection();
+        });
         var socket = io('http://localhost:4567');
         var id = 0;
         function isJson(str) {

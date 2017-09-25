@@ -35,7 +35,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(allowCrossDomain);
-app.use("/", index);
+app.get("/", function(req, res) {
+  res.redirect("/logs");
+});
+app.use("/logs", index);
 
 // Socket Connection
 var server = require("http").createServer(app);
