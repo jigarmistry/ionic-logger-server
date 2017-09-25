@@ -36,7 +36,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(allowCrossDomain);
 app.use("/", index);
-app.use("/users", users);
 
 // Socket Connection
 var server = require("http").createServer(app);
