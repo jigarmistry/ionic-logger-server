@@ -1,12 +1,13 @@
 <div class="container">
     <div class="text-center">
         <h3>App Logs</h3>
-        <button id="clear" type="button" class="btn btn-danger">Clear</button><br/><br/>
+        <button id="clear" type="button" class="btn btn-outline-danger">Clear</button><br/><br/>
     </div>
     <ul id="log" class="list-group"></ul>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
+        var clipboard = new Clipboard('.clip');
         var socket = io('http://localhost:4567');
         var id = 0;
         function isJson(str) {
@@ -22,8 +23,9 @@
         socket.on('message', function (data) {
             id += 1;
             let jsonId = "json" + id;
+            let valueId = "value" + id;
             let message = data.message ? data.message : "";
-            $("#log").prepend('<li class="list-group-item"><span class="date">' + new Date() + "</span> : <b>" + message + '</b><p id="' + jsonId + '"></p></li>');
+            $("#log").prepend('<li class="list-group-item"><span class="date">' + new Date() + "</span> : <b>" + message + '</b><p id="' + jsonId + '"></p><button type="button" style="float: right;" class= "btn btn-outline-info btn-sm clip" data-clipboard-demo data-clipboard-text=' + JSON.stringify(data.data) + '>Copy</button></li>');
 
             if (data.data) {
                 if (isJson(data.data)) {
