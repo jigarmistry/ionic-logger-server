@@ -67,6 +67,6 @@ app.use(function(err, req, res, next) {
   res.render("error");
 });
 
-server.listen(4567);
+server.listen(4567, "0.0.0.0");
 
 module.exports = app;
