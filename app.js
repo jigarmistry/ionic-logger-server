@@ -67,6 +67,10 @@ app.use(function(err, req, res, next) {
   res.render("error");
 });
 
-server.listen(4567, "0.0.0.0");
+server.listen(4567, "0.0.0.0", function() {
+  var host = server.address().address;
+  var port = server.address().port;
+  console.log("Running at http://" + host + ":" + port);
+});
 
 module.exports = app;
